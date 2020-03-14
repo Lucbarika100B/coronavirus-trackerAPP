@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:position="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title> Corona Virus Tracker  </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body style="padding: 4rem 2rem; font-family: Avenir;">
+<div class="container">
+    <h1 style="margin-top: -50px;"> Corona Virus Tracker, We will Survive!  </h1>
+    <p style="margin-top: 20px;">This App list the number of cases reported world wide </p>
+
+    <div class="jumbotron" style="font-size=32px">
+        <input type="text" placeholder="Search.." style=" float: right;
+        padding: 6px;
+        border: none;
+        margin-top: 8px;
+        margin-right: 16px;
+        font-size: 17px;
+        border: 1px solid #ccc;">
+
+        <h1 class="display-4" th:text="${totalReportedCases}" style="color=red;"></h1>
+        <p class="lead"> Total cases reported as of Now. The data is updated every day at 12AM ET. </p>
+        <hr class="my-4">
+
+            <span> New cases reported since the last day </span>
+            <strong> <span th:text="${totalNewCases}">.</span> </strong>
+            </p>
+
+    </div>
+
+
+
+        <table class= "table table-hover table-dark">
+
+        <tr class>
+
+            <th>State</th>
+            <th>Country</th>
+            <th>Total Cases reported</th>
+            <th>Updates since previous day</th>
+
+        </tr>
+
+        <tr th:each="locationStat : ${locationStats}">
+            <td th:text="${locationStat.state}"></td>
+            <td th:text="${locationStat.country}"></td>
+            <td th:text="${locationStat.latestTotalCases}"> 0 </td>
+            <td th:text="${locationStat.diffFromPreviousDay}"> 0 </td>
+        </tr>
+
+    </table>
+        </div>
+<div class="footer" style="margin-right: 16px;">
+    <p>
+    Disclaimer: Note that the validity of the data depends on the source .
+    You can find more information here
+    <a href="https://systems.jhu.edu/research/public-health/ncov/"> Mapping 2019-nCoV </a>
+    or <a href="https://github.com/CSSEGISandData/COVID-19"> The GitHub Repo</a>
+    </p>
+</div>
+</body>
+
+</html>
